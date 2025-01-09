@@ -17,6 +17,7 @@ public class Parser {
 //        args = new String[1];
 //        args[0] = "C:\\Users\\ideia\\Desktop\\teste/";
         System.out.println("Rodando");
+        System.out.println("Rodando");
         DAO<Movimento> dao = new DAO<>(Movimento.class);
         System.out.println(args[0] + "Processar");
         File[] filesInDirectory = getFilesInDirectory(args[0] + "Processar");
