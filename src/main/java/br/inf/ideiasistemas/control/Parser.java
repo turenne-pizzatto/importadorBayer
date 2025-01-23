@@ -1,40 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.inf.ideiasistemas.control;
 
 import br.inf.ideiasistemas.model.bean.Movimento;
 import br.inf.ideiasistemas.model.dao.DAO;
 
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * java -jar /home/ideia/ImportadorBayer/ImportadorBayer.jar
+ * /home/ideia/ImportaBayer/ java -jar
+ * /home/ideia/ImportadorBayer/ImportadorBayer.jar /home/ideia/ImportarBayer/
+ *
+ * @author ideia
+ */
 public class Parser {
-    public static void main(String[] args) throws FileNotFoundException, ParseException, IOException {
-//        System.out.println("RODANDO");
-//        args = new String[1];
-//        args[0] = "C:\\Users\\ideia\\Desktop\\teste/";
-        System.out.println("Rodando");
-        System.out.println("Rodando");
+
+    public static void main(String[] args) throws IOException  {
+        if(args.length == 0) {
+            args = new String[1];
+            args[0] = "C:/Temp/home/ideia/ImportaBayer/";
+        }
         DAO<Movimento> dao = new DAO<>(Movimento.class);
         System.out.println(args[0] + "Processar");
         File[] filesInDirectory = getFilesInDirectory(args[0] + "Processar");
         for (File file : filesInDirectory) {
-            Scanner scanner = null;
+            Scanner scanner;
             FileReader fileReader = new FileReader(file.toString());
             scanner = new Scanner(fileReader).useDelimiter("\\n");
-//            System.out.println(file.getAbsoluteFile());
             while (scanner.hasNext()) {
-//                try {
                 Movimento m = new Movimento();
                 String[] l = scanner.next().split(";", - 1);
-//                int a = 0;
-//                for (String string : l) {
-//                    System.out.println(a + " - " + string);
-//                    a++;
-//                }
                 int i = 1;
 
                 m.setCpfCnpj(l[i++]);
@@ -49,15 +53,13 @@ public class Parser {
                 m.setEmail(l[i++]);
                 m.setDataOperacao(l[i++]);
                 m.setCodProduto(l[i++]);
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setQuantidade(Integer.parseInt(l[i++]));
-//                    System.out.println(i);
-//                    System.out.println(l[i]);
 
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setPreco(Double.parseDouble(l[i++].replace(",", ".")));
                 } else {
                     i++;
@@ -69,53 +71,53 @@ public class Parser {
                 m.setCampoAdicional1(l[i++]);
                 m.setCampoAdicional2(l[i++]);
                 m.setTipoDeLoja(l[i++]);
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setSuinos(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setLeitoes(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setAves(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setPoedeiras(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setFrangos(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setCamaroes(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setPeixes(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setBovinos(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setVacas(Integer.parseInt(l[i++]));
                 } else {
                     i++;
                 }
                 m.setLote(l[i++]);
-                if (!l[i].equals("")) {
+                if (!l[i].isEmpty()) {
                     m.setNotaFiscal(Integer.parseInt(l[i++]));
                 } else {
                     i++;
@@ -145,7 +147,7 @@ public class Parser {
             }
 
         }
-        filesInDirectory = null;
+//        filesInDirectory = null;
         System.exit(0);
     }
 
@@ -163,7 +165,6 @@ public class Parser {
 
     public static File[] getFilesInDirectory(String dir) {
         File file = new File(dir);
-        File arquivos[] = file.listFiles();
-        return arquivos;
+        return file.listFiles();
     }
 }

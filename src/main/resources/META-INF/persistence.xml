@@ -1,9 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-             version="3.0">
-  <persistence-unit name="default">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="BAYERIMPORT" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+      <property name="hibernate.connection.characterEncoding" value="utf8"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/BAYERIMPORT"/>
+<!--      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://185.225.22.23:3306/BAYERIMexitPORT?useUnicode=true&amp;characterEncoding=UTF-8;"/>-->
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="30265888"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.format_sql" value="false"/>
+      <property name="hibernate.cache.use_query_cache" value="false"/>
+      <property name="hibernate.use_second_level_cache" value="false"/>
+      <property name="eclipselink.query-results-cache" value="false"/>
+      <property name="eclipselink.cache.shared.default" value="false"/>
+      <property name="openjpa.DataCache" value="false"/>
+      <property name="hibernate.use.second.level.cache" value="false"/>
+      <property name="hibernate.generate_statistics" value="true"/>
+      <property name="hibernate.jdbc.batch_size" value="1"/>
+      <property name="hibernate.order_updates" value="true"/>
+      <property name="hibernate.order_inserts" value="true"/>
+      <property name="org.hibernate.flushMode" value="COMMIT"/>
+      <property name="hibernate.connection.autocommit" value="true"/>
+      <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)"/>
+      <property name="openjpa.Compatibility" value="StrictIdentityValues=true"/>
+    </properties>
   </persistence-unit>
 </persistence>
